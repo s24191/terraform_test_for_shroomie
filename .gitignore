@@ -1,0 +1,5 @@
+.terraform/
+.terraform.lock.hc1
+terraform.tfstate*
+*.tfvars
+tt.txt
