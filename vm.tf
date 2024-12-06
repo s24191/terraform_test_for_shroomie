@@ -64,11 +64,17 @@ resource "azurerm_network_security_group" "nsg" {
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
+  lifecycle {
+    prevent_destroy = false
+  }
 }
 
 resource "azurerm_network_interface_security_group_association" "association" {
   network_interface_id      = azurerm_network_interface.example.id
   network_security_group_id = azurerm_network_security_group.nsg.id
+
+    depends_on = [azurerm_linux_virtual_machine.example]
+
 }
 
 resource "azurerm_linux_virtual_machine" "example" {
